@@ -9,6 +9,8 @@ import com.example.airline_api.repositories.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,6 +26,10 @@ public class BookingService {
     FlightService flightService;
 
 
+    public List<Booking> findAllBookings(){
+        return bookingRepository.findAll();
+    }
+
     public Optional<Booking> findBooking(long id){
         return bookingRepository.findById(id);
     }
@@ -32,10 +38,9 @@ public class BookingService {
         Passenger passenger = passengerService.findSinglePassenger(bookingDTO.getPassengerId()).get();
         Flight flight = flightService.findSingleFlight(bookingDTO.getFlightId()).get();
         Booking booking = new Booking(
-                passenger,
                 flight,
-                bookingDTO.getSeatNumber(),
-                bookingDTO.getMealPreference()
+                passenger,
+                bookingDTO.getSeatNumber()
         );
 
         bookingRepository.save(booking);

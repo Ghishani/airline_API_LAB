@@ -24,7 +24,7 @@ public class BookingController {
 
     // Add details of a new booking
     @PostMapping(value = "/{id}")
-    public ResponseEntity<Booking> addNewBooking(@RequestBody BookingDTO bookingDTO){
+    public ResponseEntity<List<Booking>> addNewBooking(@RequestBody BookingDTO bookingDTO){
             bookingService.saveBooking(bookingDTO);
             return new ResponseEntity<>(bookingService.findAllBookings(), HttpStatus.CREATED);
         }
