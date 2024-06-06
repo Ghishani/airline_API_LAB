@@ -29,10 +29,11 @@ public class BookingController {
             return new ResponseEntity<>(booking, HttpStatus.CREATED);
         }
 
-    // TODO: Extension - Update passenger meal preference
-    @PatchMapping
-    public ResponseEntity<Booking> updateMealPreference(){
-        return null;
+    // Extension - Update passenger meal preference
+    @PatchMapping(value = "/{id}")
+    public ResponseEntity<Booking> updateMealPreference(@RequestBody BookingDTO bookingDTO, @PathVariable long id){
+        Booking updatedMealPreference = bookingService.updateMealPreference(bookingDTO, id);
+        return new ResponseEntity<>(updatedMealPreference, HttpStatus.OK);
     }
 
 }
