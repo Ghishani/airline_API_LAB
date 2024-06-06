@@ -27,12 +27,12 @@ public class FlightService {
         return flightRepository.findAll();
     }
 
-    public Optional<Flight> findSingleFlight(Long id){
-        return flightRepository.findById(id);
+    public Flight findFlightById(Long id){
+        return flightRepository.findById(id).get();
     }
 
-    public void deleteFlight(long flightId){ // ADDED
-        Flight flight = findSingleFlight(flightId).get();
+    public void deleteFlight(long flightId){
+        Flight flight = findFlightById(flightId);
         for (Booking booking : flight.getBookings()){
             bookingRepository.deleteById(booking.getId());
         }

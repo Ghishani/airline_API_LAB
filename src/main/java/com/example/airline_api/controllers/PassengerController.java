@@ -19,24 +19,21 @@ public class PassengerController {
 
     // Display details of all passengers
     @GetMapping
-    public ResponseEntity<List<Passenger>> getAllPassengers(){
+    public ResponseEntity<List<Passenger>> getAllPassengers() {
         return new ResponseEntity<>(passengerService.getAllPassengers(), HttpStatus.OK);
     }
 
     // Display specific passenger details
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Passenger> getPassengerById(@PathVariable long id){
-            Optional<Passenger> passenger = passengerService.findSinglePassenger(id);
-            if (passenger.isPresent()) {
-                return new ResponseEntity<>(passenger.get(), HttpStatus.OK);
-            }
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    // Add a new passenger
-
-    @PostMapping
-    public ResponseEntity<List<Passenger>> addNewPassenger(@RequestBody Passenger passenger){
-            passengerService.savePassenger(passenger);
-            return new ResponseEntity<>(passengerService.getAllPassengers(), HttpStatus.CREATED);
-        }
+    public ResponseEntity<Passenger> getPassengerById(@PathVariable long id) {
+        Passenger passenger = passengerService.findPassengerById(id);
+        return new ResponseEntity<>(passenger, HttpStatus.OK);
     }
+
+    // Add a new passenger
+    @PostMapping
+    public ResponseEntity<Passenger> addNewPassenger(@RequestBody Passenger passenger) {
+        Passenger newPassenger = passengerService.savePassenger(passenger);
+        return new ResponseEntity<>(newPassenger, HttpStatus.CREATED);
+    }
+}

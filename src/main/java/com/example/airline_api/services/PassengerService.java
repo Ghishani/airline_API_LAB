@@ -14,14 +14,16 @@ public class PassengerService {
     @Autowired
     PassengerRepository passengerRepository;
 
+    // no need for empty controller as it is not used in the database but is needed in DTO
 
-    public void savePassenger(Passenger passenger){passengerRepository.save(passenger);}
+    public Passenger savePassenger(Passenger passenger){
+        return passengerRepository.save(passenger);}
 
     public List<Passenger> getAllPassengers(){
         return passengerRepository.findAll();
     }
 
-    public Optional<Passenger> findSinglePassenger(Long id){
-        return passengerRepository.findById(id);
+    public Passenger findPassengerById(Long id){
+        return passengerRepository.findById(id).get();// use .get() to get out of creating optional
     }
 }

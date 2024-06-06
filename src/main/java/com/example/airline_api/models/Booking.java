@@ -22,10 +22,10 @@ public class Booking {
     @JsonIgnoreProperties({"bookings"})
     private Passenger passenger;
 
-    @Column
+    @Column (name = "seat_number")
     private int seatNumber;
 
-    @Column
+    @Column (name = "meal_preference")
     private String mealPreference;
 
     public Booking(Flight flight, Passenger passenger, int seatNumber){

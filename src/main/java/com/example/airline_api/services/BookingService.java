@@ -5,6 +5,7 @@ import com.example.airline_api.models.BookingDTO;
 import com.example.airline_api.models.Flight;
 import com.example.airline_api.models.Passenger;
 import com.example.airline_api.repositories.BookingRepository;
+import com.example.airline_api.repositories.FlightRepository;
 import com.example.airline_api.repositories.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +21,10 @@ public class BookingService {
     BookingRepository bookingRepository;
 
     @Autowired
-    PassengerService passengerService;
+    FlightRepository flightRepository;
 
     @Autowired
-    FlightService flightService;
+    PassengerRepository passengerRepository;
 
 
     public List<Booking> findAllBookings(){
@@ -34,14 +35,15 @@ public class BookingService {
         return bookingRepository.findById(id);
     }
 
+
     public Booking saveBooking(BookingDTO bookingDTO){
-        Passenger passenger = passengerService.findSinglePassenger(bookingDTO.getPassengerId()).get();
-        Flight flight = flightService.findSingleFlight(bookingDTO.getFlightId()).get();
+        Passenger passenger = passengerRepository.findById(bookingDTO.getPassengerId()).get();
+        Flight flight = flightRepository.findById(bookingDTO.getFlightId()).get();
+        int seatNumber = 0;
         Booking booking = new Booking(
                 flight,
                 passenger,
-                bookingDTO.getSeatNumber()
-        );
+                seatNumber);
 
         bookingRepository.save(booking);
         return booking;

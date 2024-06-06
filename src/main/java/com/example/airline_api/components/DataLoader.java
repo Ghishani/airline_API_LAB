@@ -4,8 +4,6 @@ import com.example.airline_api.models.Booking;
 import com.example.airline_api.models.Flight;
 import com.example.airline_api.models.Passenger;
 import com.example.airline_api.repositories.BookingRepository;
-import com.example.airline_api.repositories.FlightRepository;
-import com.example.airline_api.services.BookingService;
 import com.example.airline_api.services.FlightService;
 import com.example.airline_api.services.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +45,7 @@ public class DataLoader implements ApplicationRunner {
         flightService.saveFlight(france);
 
         Passenger chuck = new Passenger("Chuck", "chuck@hotmail.com");
-        passengerService.savePassenger(ghish);
+        passengerService.savePassenger(chuck);
 
         Booking booking2 = new Booking(france, chuck, 2);
         bookingRepository.save(booking2);

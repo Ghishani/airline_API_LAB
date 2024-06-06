@@ -15,20 +15,20 @@ public class Flight {
     @Column
     private long id;
 
-    @Column
+    @Column (name = "destination")
     private String destination;
 
-    @Column
+    @Column (name = "capacity")
     private int capacity;
 
-    @Column
+    @Column (name = "departure_date")
     private String departureDate;
 
-    @Column
+    @Column (name = "departure_time")
     private String departureTime;
 
     @OneToMany(mappedBy = "flight")
-    @JsonIgnoreProperties({"flight"})
+    @JsonIgnoreProperties({"flight"}) // how it is written on line 18 in booking class
     private List<Booking> bookings;
 
     public Flight(String destination, int capacity, String departureDate, String departureTime) {
@@ -89,4 +89,6 @@ public class Flight {
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
+
+
 }

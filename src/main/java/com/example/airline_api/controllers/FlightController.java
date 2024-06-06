@@ -27,12 +27,9 @@ public class FlightController {
     // Display a specific flight
     @GetMapping(value = "/{id}")
     public ResponseEntity<Flight> getFlightById(@PathVariable long id){
-        Optional<Flight> flight = flightService.findSingleFlight(id);
-        if (flight.isPresent()) {
-            return new ResponseEntity<>(flight.get(), HttpStatus.OK);
+        Flight flight = flightService.findFlightById(id);
+            return new ResponseEntity<>(flight, HttpStatus.OK);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
 
     // Add details of a new flight
     @PostMapping

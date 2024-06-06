@@ -1,17 +1,14 @@
 package com.example.airline_api.models;
 
 public class BookingDTO {
-
+// DTO is a POJO class
     private long passengerId;
     private long flightId;
-    private int seatNumber;
-    private String mealPreference;
 
-    public BookingDTO(long passengerId, long flightId, int seatNumber, String mealPreference) {
+
+    public BookingDTO(long passengerId, long flightId) {
         this.passengerId = passengerId;
         this.flightId = flightId;
-        this.seatNumber = seatNumber;
-        this.mealPreference = mealPreference;
     }
 
     public BookingDTO(){
@@ -34,19 +31,4 @@ public class BookingDTO {
         this.flightId = flightId;
     }
 
-    public int getSeatNumber() {
-        return seatNumber;
-    }
-
-    public void setSeatNumber(int seatNumber) {
-        this.seatNumber = seatNumber;
-    }
-
-    public String getMealPreference() {
-        return mealPreference;
-    }
-
-    public void setMealPreference(String mealPreference) {
-        this.mealPreference = mealPreference;
-    }
 }
